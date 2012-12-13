@@ -1,4 +1,4 @@
-tcp-proxy
+tcp-server
 =========
-the multithread tcp proxy based on the libev
+the multithread tcp server based on the libev
 
