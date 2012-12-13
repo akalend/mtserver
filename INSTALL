@@ -1,0 +1,19 @@
+1) required the lib:
+libev  
+
+Attention!
+the autogen script is have not test of their libs
+
+2) make autogen.sh as executable file:
+chmod +x autogen.sh
+
+3) run: 
+./autogen
+make
+make install
+
+4) run server
+./server 
+
+
+

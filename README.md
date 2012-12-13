@@ -1,2 +1,4 @@
-the example of multithreading server
+tcp-proxy
+=========
+the multithread tcp proxy based on the libev
 
