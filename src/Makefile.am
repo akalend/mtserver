@@ -5,7 +5,7 @@ shared_srcdir = $(HOME)
 INCLUDES =  -I$(shared_srcdir)/include -I/usr/include -I/usr/local/include -DPREFIX=\"${prefix}\"  -D_GNU_SOURCE 
 
 
-proxy_SOURCES = main.c \
+server_SOURCES = main.c \
 		ini.c \
 		config.c \
 		client.c \
@@ -13,8 +13,8 @@ proxy_SOURCES = main.c \
 		io_buffer.c 
 		
 
-proxy_LDFLAGS = -L/usr/lib -L/usr/local/lib -pthread  -lz -lbz2 -lresolv  -ldl  -lpthread -lm -lc -lev 
-proxy_LDADD = -L$(shared_srcdir)/lib 
+server_LDFLAGS = -L/usr/lib -L/usr/local/lib -pthread  -lz -lbz2 -lresolv  -ldl  -lpthread -lm -lc -lev 
+server_LDADD = -L$(shared_srcdir)/lib 
 
 install-conf: install
 	echo -------------------------------------------------

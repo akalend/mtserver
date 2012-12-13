@@ -104,8 +104,7 @@ static void *libev_worker(void *arg) {
 
 //	ev_loop(EV_A_ 0);
 	ev_loop(me->loop, 0);
-	
-	
+		
     return NULL;
 }
 

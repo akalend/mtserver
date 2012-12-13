@@ -34,7 +34,7 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = i386-apple-darwin9.8.0
 host_triplet = i386-apple-darwin9.8.0
-bin_PROGRAMS = proxy$(EXEEXT)
+bin_PROGRAMS = server$(EXEEXT)
 subdir = src
 DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
@@ -48,11 +48,11 @@ CONFIG_CLEAN_FILES =
 CONFIG_CLEAN_VPATH_FILES =
 am__installdirs = "$(DESTDIR)$(bindir)"
 PROGRAMS = $(bin_PROGRAMS)
-am_proxy_OBJECTS = main.$(OBJEXT) ini.$(OBJEXT) config.$(OBJEXT) \
+am_server_OBJECTS = main.$(OBJEXT) ini.$(OBJEXT) config.$(OBJEXT) \
 	client.$(OBJEXT) thread.$(OBJEXT) io_buffer.$(OBJEXT)
-proxy_OBJECTS = $(am_proxy_OBJECTS)
-proxy_DEPENDENCIES =
-proxy_LINK = $(CCLD) $(AM_CFLAGS) $(CFLAGS) $(proxy_LDFLAGS) \
+server_OBJECTS = $(am_server_OBJECTS)
+server_DEPENDENCIES =
+server_LINK = $(CCLD) $(AM_CFLAGS) $(CFLAGS) $(server_LDFLAGS) \
 	$(LDFLAGS) -o $@
 DEFAULT_INCLUDES = 
 depcomp = $(SHELL) $(top_srcdir)/depcomp
@@ -62,16 +62,16 @@ COMPILE = $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) \
 	$(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS)
 CCLD = $(CC)
 LINK = $(CCLD) $(AM_CFLAGS) $(CFLAGS) $(AM_LDFLAGS) $(LDFLAGS) -o $@
-SOURCES = $(proxy_SOURCES)
-DIST_SOURCES = $(proxy_SOURCES)
+SOURCES = $(server_SOURCES)
+DIST_SOURCES = $(server_SOURCES)
 ETAGS = etags
 CTAGS = ctags
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
-ACLOCAL = ${SHELL} /Users/akalend/projects/tcp-proxy/missing --run aclocal-1.11
-AMTAR = ${SHELL} /Users/akalend/projects/tcp-proxy/missing --run tar
-AUTOCONF = ${SHELL} /Users/akalend/projects/tcp-proxy/missing --run autoconf
-AUTOHEADER = ${SHELL} /Users/akalend/projects/tcp-proxy/missing --run autoheader
-AUTOMAKE = ${SHELL} /Users/akalend/projects/tcp-proxy/missing --run automake-1.11
+ACLOCAL = ${SHELL} /Users/akalend/projects/mtserver/missing --run aclocal-1.11
+AMTAR = ${SHELL} /Users/akalend/projects/mtserver/missing --run tar
+AUTOCONF = ${SHELL} /Users/akalend/projects/mtserver/missing --run autoconf
+AUTOHEADER = ${SHELL} /Users/akalend/projects/mtserver/missing --run autoheader
+AUTOMAKE = ${SHELL} /Users/akalend/projects/mtserver/missing --run automake-1.11
 AWK = gawk
 CC = gcc
 CCDEPMODE = depmode=gcc3
@@ -101,7 +101,7 @@ LIBOBJS =
 LIBS = 
 LTLIBOBJS = 
 MAINT = #
-MAKEINFO = ${SHELL} /Users/akalend/projects/tcp-proxy/missing --run makeinfo
+MAKEINFO = ${SHELL} /Users/akalend/projects/mtserver/missing --run makeinfo
 MKDIR_P = /opt/local/bin/gmkdir -p
 OBJEXT = o
 PACKAGE = proxy
@@ -120,10 +120,10 @@ STRIP =
 VERSION = 2.0
 WL_DY = -Wl,-dy
 WL_STATIC = -Wl,-static
-abs_builddir = /Users/akalend/projects/tcp-proxy/src
-abs_srcdir = /Users/akalend/projects/tcp-proxy/src
-abs_top_builddir = /Users/akalend/projects/tcp-proxy
-abs_top_srcdir = /Users/akalend/projects/tcp-proxy
+abs_builddir = /Users/akalend/projects/mtserver/src
+abs_srcdir = /Users/akalend/projects/mtserver/src
+abs_top_builddir = /Users/akalend/projects/mtserver
+abs_top_srcdir = /Users/akalend/projects/mtserver
 ac_ct_CC = gcc
 am__include = include
 am__leading_dot = .
@@ -150,7 +150,7 @@ host_vendor = apple
 htmldir = ${docdir}
 includedir = ${prefix}/include
 infodir = ${datarootdir}/info
-install_sh = ${SHELL} /Users/akalend/projects/tcp-proxy/install-sh
+install_sh = ${SHELL} /Users/akalend/projects/mtserver/install-sh
 libdir = ${exec_prefix}/lib
 libexecdir = ${exec_prefix}/libexec
 localedir = ${datarootdir}/locale
@@ -172,15 +172,15 @@ top_builddir = ..
 top_srcdir = ..
 shared_srcdir = $(HOME)
 INCLUDES = -I$(shared_srcdir)/include -I/usr/include -I/usr/local/include -DPREFIX=\"${prefix}\"  -D_GNU_SOURCE 
-proxy_SOURCES = main.c \
+server_SOURCES = main.c \
 		ini.c \
 		config.c \
 		client.c \
 		thread.c \
 		io_buffer.c 
 
-proxy_LDFLAGS = -L/usr/lib -L/usr/local/lib -pthread  -lz -lbz2 -lresolv  -ldl  -lpthread -lm -lc -lev 
-proxy_LDADD = -L$(shared_srcdir)/lib 
+server_LDFLAGS = -L/usr/lib -L/usr/local/lib -pthread  -lz -lbz2 -lresolv  -ldl  -lpthread -lm -lc -lev 
+server_LDADD = -L$(shared_srcdir)/lib 
 all: all-am
 
 .SUFFIXES:
@@ -252,9 +252,9 @@ uninstall-binPROGRAMS:
 
 clean-binPROGRAMS:
 	-test -z "$(bin_PROGRAMS)" || rm -f $(bin_PROGRAMS)
-proxy$(EXEEXT): $(proxy_OBJECTS) $(proxy_DEPENDENCIES) 
-	@rm -f proxy$(EXEEXT)
-	$(proxy_LINK) $(proxy_OBJECTS) $(proxy_LDADD) $(LIBS)
+server$(EXEEXT): $(server_OBJECTS) $(server_DEPENDENCIES) 
+	@rm -f server$(EXEEXT)
+	$(server_LINK) $(server_OBJECTS) $(server_LDADD) $(LIBS)
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)
